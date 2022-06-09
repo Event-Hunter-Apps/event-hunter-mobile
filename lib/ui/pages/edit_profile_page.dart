@@ -5,7 +5,6 @@ import 'package:event_hunter/providers/auth_provider.dart';
 import 'package:event_hunter/shared/theme.dart';
 import 'package:event_hunter/ui/widgets/loading_button.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +30,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   void initState() {
     super.initState();
 
-    Provider.of<AuthProvider>(context, listen: false).getUserActive();
+    // Provider.of<AuthProvider>(context, listen: false).getUserActive();
   }
 
   @override
@@ -41,67 +40,67 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
-    UserModel user = authProvider.user;
+    // UserModel user = authProvider.user;
 
-    emailController.text = user.email!;
-    fullNameController.text = user.fullName!;
-    phoneNumberController.text = user.phoneNumber!.toString();
-    roleController.text = user.role!;
+    // emailController.text = user.email!;
+    // fullNameController.text = user.fullName!;
+    // phoneNumberController.text = user.phoneNumber!.toString();
+    // roleController.text = user.role!.toString();
 
     handleUpdateProfile() async {
       setState(() {
         isLoading = true;
       });
 
-      bool isAdaPerubahan = fullNameController.text != user.fullName ||
-          phoneNumberController.text != user.phoneNumber.toString();
+      // bool isAdaPerubahan = fullNameController.text != user.fullName ||
+      //     phoneNumberController.text != user.phoneNumber.toString();
 
-      try {
-        if (isAdaPerubahan &&
-            await authProvider.updateProfile(
-              fullName: fullNameController.text,
-              phoneNumber: int.parse(phoneNumberController.text),
-            )) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              duration: Duration(seconds: 2),
-              backgroundColor: successColor,
-              content: Text(
-                'Profile Berhasil Update',
-                textAlign: TextAlign.center,
-              ),
-            ),
-          );
-          Future.delayed(Duration(milliseconds: 2500), () async {
-            Navigator.pop(context);
-          });
-        } else if (!isAdaPerubahan) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              duration: Duration(seconds: 2),
-              backgroundColor: alertColor,
-              content: Text(
-                'Tidak ada perubahan',
-                textAlign: TextAlign.center,
-              ),
-            ),
-          );
-        }
-      } on FirebaseAuthException catch (e) {
-        String handlingErrorCode(String errorCode) {
-          return errorCode;
-        }
+      // try {
+      //   if (isAdaPerubahan &&
+      //       await authProvider.updateProfile(
+      //         fullName: fullNameController.text,
+      //         phoneNumber: int.parse(phoneNumberController.text),
+      //       )) {
+      //     ScaffoldMessenger.of(context).showSnackBar(
+      //       SnackBar(
+      //         duration: Duration(seconds: 2),
+      //         backgroundColor: successColor,
+      //         content: Text(
+      //           'Profile Berhasil Update',
+      //           textAlign: TextAlign.center,
+      //         ),
+      //       ),
+      //     );
+      //     Future.delayed(Duration(milliseconds: 2500), () async {
+      //       Navigator.pop(context);
+      //     });
+      //   } else if (!isAdaPerubahan) {
+      //     ScaffoldMessenger.of(context).showSnackBar(
+      //       SnackBar(
+      //         duration: Duration(seconds: 2),
+      //         backgroundColor: alertColor,
+      //         content: Text(
+      //           'Tidak ada perubahan',
+      //           textAlign: TextAlign.center,
+      //         ),
+      //       ),
+      //     );
+      //   }
+      // } on FirebaseAuthException catch (e) {
+      //   String handlingErrorCode(String errorCode) {
+      //     return errorCode;
+      //   }
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: alertColor,
-            content: Text(
-              handlingErrorCode(e.code),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        );
-      }
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(
+      //       backgroundColor: alertColor,
+      //       content: Text(
+      //         handlingErrorCode(e.code),
+      //         textAlign: TextAlign.center,
+      //       ),
+      //     ),
+      //   );
+      // }
 
       setState(() {
         isLoading = false;

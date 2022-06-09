@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:event_hunter/providers/auth_provider.dart';
+import 'package:event_hunter/services/test_login_service.dart';
 import 'package:event_hunter/shared/theme.dart';
 import 'package:event_hunter/ui/widgets/loading_button.dart';
 import 'package:event_hunter/utils/form_field_validator.dart';
 import 'package:event_hunter/utils/format_currency.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,51 +36,70 @@ class _SignInPageState extends State<SignInPage> {
         isLoading = true;
       });
 
-      try {
-        if (await authProvider.signIn(
-          email: emailController.text,
-          password: passwordController.text,
-        )) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              duration: Duration(seconds: 2),
-              backgroundColor: successColor,
-              content: Text(
-                'Berhasil Login',
-                textAlign: TextAlign.center,
-              ),
-            ),
-          );
-          Future.delayed(Duration(seconds: 3), () async {
-            if (authProvider.user.role == 'Customer') {
-              await Navigator.pushNamedAndRemoveUntil(
-                  context, '/home', (route) => false);
-            } else if (authProvider.user.role == 'Event Organizer') {
-              await Navigator.pushNamedAndRemoveUntil(
-                  context, '/profile-page', (route) => false);
-            }
-          });
-        }
-      } on FirebaseAuthException catch (e) {
-        String handlingErrorCode(String errorCode) {
-          if (errorCode == 'user-not-found') {
-            return 'User Not Found';
-          } else if (errorCode == 'wrong-password') {
-            return 'Wrong Password';
-          }
+      // try {
+      //   if (await authProvider.signIn(
+      //     email: emailController.text,
+      //     password: passwordController.text,
+      //   )) {
+      //     ScaffoldMessenger.of(context).showSnackBar(
+      //       SnackBar(
+      //         duration: Duration(seconds: 2),
+      //         backgroundColor: successColor,
+      //         content: Text(
+      //           'Berhasil Login',
+      //           textAlign: TextAlign.center,
+      //         ),
+      //       ),
+      //     );
+      //     Future.delayed(Duration(seconds: 3), () async {
+      //       if (authProvider.user.role == 'Customer') {
+      //         await Navigator.pushNamedAndRemoveUntil(
+      //             context, '/home', (route) => false);
+      //       } else if (authProvider.user.role == 'Event Organizer') {
+      //         await Navigator.pushNamedAndRemoveUntil(
+      //             context, '/profile-page', (route) => false);
+      //       }
+      //     });
+      //   }
+      // } on FirebaseAuthException catch (e) {
+      //   String handlingErrorCode(String errorCode) {
+      //     if (errorCode == 'user-not-found') {
+      //       return 'User Not Found';
+      //     } else if (errorCode == 'wrong-password') {
+      //       return 'Wrong Password';
+      //     }
 
-          return errorCode;
-        }
+      //     return errorCode;
+      //   }
 
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(
+      //       backgroundColor: alertColor,
+      //       content: Text(
+      //         handlingErrorCode(e.code),
+      //         textAlign: TextAlign.center,
+      //       ),
+      //     ),
+      //   );
+      // }
+
+      // note : untuk navigasi sementara
+      if (emailController != null && passwordController != null) {
+        TestLoginService().getHttp();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            backgroundColor: alertColor,
+            duration: Duration(seconds: 2),
+            backgroundColor: successColor,
             content: Text(
-              handlingErrorCode(e.code),
+              'Berhasil Login',
               textAlign: TextAlign.center,
             ),
           ),
         );
+        // Future.delayed(Duration(seconds: 3), () async {
+        //   await Navigator.pushNamedAndRemoveUntil(
+        //       context, '/home', (route) => false);
+        // });
       }
 
       setState(() {

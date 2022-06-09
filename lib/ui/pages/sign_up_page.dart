@@ -1,9 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:event_hunter/providers/auth_provider.dart';
+import 'package:event_hunter/services/auth_services.dart';
+import 'package:event_hunter/services/test_login_service.dart';
 import 'package:event_hunter/shared/theme.dart';
 import 'package:event_hunter/ui/widgets/loading_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -40,11 +41,11 @@ class _SignUpPageState extends State<SignUpPage> {
 
       try {
         if (await authProvider.signUp(
-          role: roleUserGroupValue!,
           email: emailController.text,
           password: passwordController.text,
-          fullName: fullNameController.text,
-          phoneNumber: int.parse(phoneNumberController.text),
+          passwordConfirmation: verfifyPasswordController.text,
+          name: fullNameController.text,
+          phoneNumber: phoneNumberController.text,
         )) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -73,7 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 context, '/home', (route) => false);
           });
         }
-      } on FirebaseAuthException catch (e) {
+      } catch (e) {
         String handlingErrorCode(String errorCode) {
           if (errorCode == 'email-already-in-use') {
             return 'Email Already in Use';
@@ -86,12 +87,37 @@ class _SignUpPageState extends State<SignUpPage> {
           SnackBar(
             backgroundColor: alertColor,
             content: Text(
-              handlingErrorCode(e.code),
+              'error',
               textAlign: TextAlign.center,
             ),
           ),
         );
       }
+
+      // if (emailController != null &&
+      //     fullNameController != null &&
+      //     phoneNumberController != null &&
+      //     passwordController != null &&
+      //     verfifyPasswordController != null) {
+      //   TestLoginService().register();
+      //   AuthService().signUp(
+      //     email: 'restu@gmail.com',
+      //     password: '123',
+      //     passwordConfirmation: '123',
+      //     name: 'restu',
+      //     phoneNumber: '0812312313',
+      //   );
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(
+      //       duration: Duration(seconds: 2),
+      //       backgroundColor: successColor,
+      //       content: Text(
+      //         'Berhasil Login',
+      //         textAlign: TextAlign.center,
+      //       ),
+      //     ),
+      //   );
+      // }
 
       setState(() {
         isLoading = false;

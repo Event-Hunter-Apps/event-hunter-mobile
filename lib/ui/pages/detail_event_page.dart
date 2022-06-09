@@ -2,6 +2,8 @@
 
 import 'package:event_hunter/models/event_model.dart';
 import 'package:event_hunter/shared/theme.dart';
+import 'package:event_hunter/ui/pages/payment_page.dart';
+import 'package:event_hunter/ui/pages/success_page.dart';
 import 'package:event_hunter/ui/widgets/destination_tile.dart';
 import 'package:event_hunter/utils/format_currency.dart';
 import 'package:flutter/material.dart';
@@ -418,6 +420,17 @@ class _DetailEventPageState extends State<DetailEventPage> {
               setState(() {
                 isLoading = !isLoading;
                 print(isLoading);
+              });
+
+              Future.delayed(Duration(seconds: 2), () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return PaymentPage();
+                    },
+                  ),
+                );
               });
             },
             style: TextButton.styleFrom(

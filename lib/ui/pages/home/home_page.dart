@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       await Provider.of<EventProvider>(context, listen: false)
           .getEventsFromAPI();
 
-      await Provider.of<AuthProvider>(context, listen: false).getUserActive();
+      // await Provider.of<AuthProvider>(context, listen: false).getUserActive();
     });
   }
 

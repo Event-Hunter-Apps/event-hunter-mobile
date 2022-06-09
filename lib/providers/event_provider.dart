@@ -33,16 +33,16 @@ class EventProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getEvents() async {
-    try {
-      List<EventModel> events = await EventService().fetcEvents();
+  // Future<void> getEvents() async {
+  //   try {
+  //     List<EventModel> events = await EventService().fetcEvents();
 
-      _events = events;
-    } catch (e) {
-      print(e);
-    }
-    notifyListeners();
-  }
+  //     _events = events;
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  //   notifyListeners();
+  // }
 
   Future<void> getEventsFromAPI() async {
     changeState(EventState.loading);

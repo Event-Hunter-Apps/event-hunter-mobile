@@ -14,28 +14,28 @@ import 'package:event_hunter/ui/pages/sign_in_page.dart';
 import 'package:event_hunter/ui/pages/sign_up_page.dart';
 import 'package:event_hunter/ui/pages/splash_screen.dart';
 import 'package:event_hunter/ui/pages/welcome_page.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:event_hunter/ui/test_api_pages/register_response_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // WidgetsFlutterBinding.ensureInitialized();
 
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  var user = prefs.getString('userSaved');
-  var userNow;
-  if (user != null) {
-    var getUser = UserModel.fromJson(json.decode(user));
-    userNow = getUser;
-  }
+  // SharedPreferences prefs = await SharedPreferences.getInstance();
+  // var user = prefs.getString('userSaved');
+  // var userNow;
+  // if (user != null) {
+  //   var getUser = UserModel.fromJson(json.decode(user));
+  //   userNow = getUser;
+  // }
 
   runApp(MyApp(
       // initialRoute: user == null ? '/sign-in' : '/home',
 
       // note : untuk tampilkan halaman sesuai ROLE
-      initialRoute: user == null ? '/' : '/home'
+      // initialRoute: user == null ? '/' : '/home'
 
       // note : untuk cek apakah user sudah login atau belum
       // initialRoute: user == null ? '/sign-in' : '/welcome-page',
@@ -43,8 +43,11 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  final String initialRoute;
-  const MyApp({required this.initialRoute, Key? key}) : super(key: key);
+  // final String initialRoute;
+  const MyApp({
+    // required this.initialRoute,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +65,8 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        // initialRoute: '/sign-in',
-        initialRoute: initialRoute,
+        initialRoute: '/',
+        // initialRoute: initialRoute,
         routes: {
           '/': (context) => SplashPage(),
           '/welcome-page': (context) => WelcomePage(),
@@ -73,6 +76,9 @@ class MyApp extends StatelessWidget {
           '/explore-location': (context) => ExploreEventPage(),
           '/profile-page': (context) => ProfilePage(),
           '/edit-profile-page': (context) => EditProfilePage(),
+
+          // note : TEST API PAGE
+          // '/register-response-page': (context) => RegisterResponsePage(),
         },
       ),
     );
