@@ -42,27 +42,22 @@ class AuthService {
     try {
       // Note : Untuk Register pada Firebase Auth
       // * (belum tersimpan ke firestore)
-      print(name);
-      print(email);
-      var response = await Dio().post(
-        'https://e226efdc-1950-418f-a3a5-75bfc54b58c7.mock.pstmn.io/api/register',
-        data: {
-          "nama": name,
-          "email": email,
-          "no_hp": phoneNumber,
-          "password": password,
-          "password_confirmation": passwordConfirmation,
-          "role_id": 2,
-        },
-      );
-      final Map parsed = json.decode(response.data);
-      final user = UserModel.fromJson(parsed);
-
-      // note : melakukan set user (menyimpan data user pada firestore)
-      // await UserService().setUser(user);
+      var response = await Dio().post('http://10.0.2.2:8000/api/register',
+          data: {
+            "nama": name,
+            "email": email,
+            "no_hp": phoneNumber,
+            "password": password,
+            "password_confirmation": passwordConfirmation,
+            "role_id": 2,
+          },
+          options: Options(
+            headers: {"Accept": "application/json"},
+          ));
+      final user = UserModel.createUser(response.data);
       return user;
     } catch (e) {
-      throw e;
+      throw e.toString();
     }
   }
 

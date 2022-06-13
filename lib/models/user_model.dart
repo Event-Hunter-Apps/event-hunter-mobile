@@ -34,7 +34,7 @@ class UserModel {
     };
   }
 
-  UserModel.fromJson(Map json) {
+  UserModel.createUser(Map<String, dynamic> json) {
     uid = json['user']['id'];
     fullName = json['user']['nama'];
     role = json['user']['role_id'];
