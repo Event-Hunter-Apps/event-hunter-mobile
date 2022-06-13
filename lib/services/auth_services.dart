@@ -57,7 +57,8 @@ class AuthService {
       final user = UserModel.createUser(response.data);
       return user;
     } catch (e) {
-      throw e.toString();
+      print('masuk Error service');
+      throw e;
     }
   }
 

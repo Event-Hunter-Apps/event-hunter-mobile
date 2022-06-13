@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_print
 
+import 'package:dio/dio.dart';
 import 'package:event_hunter/providers/auth_provider.dart';
 import 'package:event_hunter/services/auth_services.dart';
 import 'package:event_hunter/services/test_login_service.dart';
@@ -74,20 +75,30 @@ class _SignUpPageState extends State<SignUpPage> {
                 context, '/home', (route) => false);
           });
         }
-      } catch (e) {
-        String handlingErrorCode(String errorCode) {
-          if (errorCode == 'email-already-in-use') {
-            return 'Email Already in Use';
-          }
+      } on DioError catch (e) {
+        // String handlingErrorCode(String errorCode) {
+        //   if (errorCode == 'email-already-in-use') {
+        //     return 'Email Already in Use';
+        //   }
 
-          return errorCode;
+        //   return errorCode;
+        // }
+        String? errorMessage;
+        print('masuk Error');
+        if (e.response != null) {
+          print(e.response?.data);
+          errorMessage = e.response?.data['message'];
+        } else {
+          // Something happened in setting up or sending the request that triggered an Error
+
+          print(e.message);
         }
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: alertColor,
             content: Text(
-              'error',
+              errorMessage!,
               textAlign: TextAlign.center,
             ),
           ),
