@@ -58,12 +58,12 @@ class AuthProvider with ChangeNotifier {
 
       // note : SharedPref
 
-      SharedPreferences prefs = await SharedPreferences.getInstance();
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      String userSaved = json.encode(_user.toJson());
-      prefs.setString('userSaved', userSaved);
+      // String userSaved = json.encode(_user.toJson());
+      // prefs.setString('userSaved', userSaved);
 
-      _user = UserModel.fromJson(json.decode(userSaved));
+      // _user = UserModel.fromJson(json.decode(userSaved));
 
       // note : End
 
