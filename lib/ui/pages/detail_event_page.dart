@@ -30,7 +30,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${widget.eventModel.name}',
+                '${widget.eventModel.nama}',
                 style: secondaryTextStyle.copyWith(
                   fontSize: 22,
                   fontWeight: bold,
@@ -42,7 +42,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
               Text('Starting from'),
               SizedBox(height: 5),
               Text(
-                'Rp ${widget.eventModel.price}',
+                'Rp ${widget.eventModel.harga}',
                 style: secondaryTextStyle.copyWith(
                   fontSize: 18,
                   fontWeight: bold,
@@ -130,7 +130,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                 Expanded(
                   child: Container(
                     child: Text(
-                      '${widget.eventModel.name}',
+                      '${widget.eventModel.nama}',
                       style: secondaryTextStyle.copyWith(
                         fontSize: 20,
                         fontWeight: semiBold,
@@ -156,7 +156,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
           semanticContainer: true,
           clipBehavior: Clip.antiAliasWithSaveLayer,
           child: Image(
-            image: NetworkImage(widget.eventModel.imgThumbnail!),
+            image: NetworkImage(widget.eventModel.image!),
             fit: BoxFit.cover,
           ),
           shape: RoundedRectangleBorder(
@@ -180,7 +180,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
           ),
           Expanded(
             child: Text(
-              '${widget.eventModel.location}',
+              '${widget.eventModel.lokasi}',
               style: secondaryTextStyle.copyWith(
                 fontSize: 15,
                 fontWeight: medium,
@@ -207,7 +207,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
           ),
           Expanded(
             child: Text(
-              '${widget.eventModel.dateStart} - ${widget.eventModel.dateEnd}',
+              '${widget.eventModel.tanggal_mulai} - ${widget.eventModel.tanggal_berakhir}',
               style: secondaryTextStyle.copyWith(
                 fontSize: 15,
                 fontWeight: medium,
@@ -234,7 +234,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
           ),
           Expanded(
             child: Text(
-              '${widget.eventModel.timeStart} - ${widget.eventModel.timeEnd}',
+              '${widget.eventModel.jam_buka} - ${widget.eventModel.jam_tutup}',
               style: secondaryTextStyle.copyWith(
                 fontSize: 15,
                 fontWeight: medium,
@@ -261,7 +261,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
           ),
           Expanded(
             child: Text(
-              '${widget.eventModel.city}',
+              '${widget.eventModel.kota}',
               style: secondaryTextStyle.copyWith(
                 fontSize: 15,
                 fontWeight: medium,
@@ -361,7 +361,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
           ),
           // initialValue:
           //     'a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z a b c d e f g h i j k l m n o p q r s t u v w x y z',
-          initialValue: widget.eventModel.description,
+          initialValue: widget.eventModel.deskripsi,
           keyboardType: TextInputType.multiline,
           decoration: InputDecoration(
             focusedBorder: InputBorder.none,
@@ -458,7 +458,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                       ),
                     ),
                     Text(
-                      'Starting from ${FormatCurrency().formatRupiah(widget.eventModel.price!)}',
+                      'Starting from ${FormatCurrency().formatRupiah(widget.eventModel.harga!)}',
                       style: primaryTextStyle.copyWith(
                         fontSize: 13,
                         fontWeight: reguler,

@@ -1,53 +1,93 @@
+// ignore_for_file: non_constant_identifier_names
+
 class EventModel {
-  late final String? imgThumbnail;
-  late final String? name;
-  late final int? price;
-  late final String? city;
-  late final String? location;
-  late final String? description;
-  late final String? dateStart;
-  late final String? dateEnd;
-  late final String? timeStart;
-  late final String? timeEnd;
+  late final int? id;
+  late final int? user_id;
+  late final String? nama;
+  late final String? deskripsi;
+  late final String? tanggal_mulai;
+  late final String? tanggal_berakhir;
+  late final String? jam_buka;
+  late final String? jam_tutup;
+  late final String? lokasi;
+  late final String? kota;
+  late final int? harga;
+  late final String? image;
+  late final String? created_at;
+  late final String? updated_at;
+  late final String? deleted_at;
 
   EventModel({
-    required this.imgThumbnail,
-    required this.name,
-    required this.price,
-    required this.city,
-    required this.location,
-    required this.description,
-    required this.dateStart,
-    required this.dateEnd,
-    required this.timeStart,
-    required this.timeEnd,
+    required this.id,
+    required this.user_id,
+    required this.nama,
+    required this.deskripsi,
+    required this.tanggal_mulai,
+    required this.tanggal_berakhir,
+    required this.jam_buka,
+    required this.jam_tutup,
+    required this.lokasi,
+    required this.kota,
+    required this.harga,
+    required this.image,
+    required this.created_at,
+    required this.updated_at,
+    required this.deleted_at,
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'imgThumbnail': imgThumbnail,
-      'name': name,
-      'price': price,
-      'city': city,
-      'location': location,
-      'description': description,
-      'dateStart': dateStart,
-      'dateEnd': dateEnd,
-      'timeStart': timeStart,
-      'timeEnd': timeEnd,
+      'id': id,
+      'user_id': user_id,
+      'nama': nama,
+      'deskripsi': deskripsi,
+      'tanggal_mulai': tanggal_mulai,
+      'tanggal_berakhir': tanggal_berakhir,
+      'jam_buka': jam_buka,
+      'jam_tutup': jam_tutup,
+      'lokasi': lokasi,
+      'kota': kota,
+      'harga': harga,
+      'image': image,
+      'created_at': created_at,
+      'updated_at': updated_at,
+      'deleted_at': deleted_at,
     };
   }
 
   EventModel.fromJson(Map json) {
-    imgThumbnail = json['imgThumbnail'];
-    name = json['name'];
-    price = json['price'];
-    city = json['city'];
-    location = json['location'];
-    description = json['description'];
-    dateStart = json['dateStart'];
-    dateEnd = json['dateEnd'];
-    timeStart = json['timeStart'];
-    timeEnd = json['timeEnd'];
+    id = json['id'];
+    user_id = json['user_id'];
+    nama = json['nama'];
+    deskripsi = json['deskripsi'];
+    tanggal_mulai = json['tanggal_mulai'];
+    tanggal_berakhir = json['tanggal_berakhir'];
+    jam_buka = json['jam_buka'];
+    jam_tutup = json['jam_tutup'];
+    lokasi = json['lokasi'];
+    kota = json['kota'];
+    harga = json['harga'];
+    image = json['image'];
+    created_at = json['created_at'];
+    updated_at = json['updated_at'];
+    deleted_at = json['deleted_at'];
+  }
+
+  EventModel.fromDynamic(dynamic json) {
+    id = json.id;
+    user_id = json.user_id;
+    nama = json.nama;
+    deskripsi = json.deskripsi;
+    tanggal_mulai = json.tanggal_mulai;
+    tanggal_berakhir = json.tanggal_berakhir;
+    jam_buka = json.jam_buka;
+    jam_tutup = json.jam_tutup;
+    lokasi = json.lokasi;
+    kota = json.kota;
+    harga = json.harga;
+    image = json.image;
+    created_at = json.created_at;
+    updated_at = json.updated_at;
+    deleted_at = json.deleted_at;
   }
 }

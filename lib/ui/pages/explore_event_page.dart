@@ -80,11 +80,11 @@ class _ExploreEventPageState extends State<ExploreEventPage> {
                     itemBuilder: (context, index) {
                       EventModel event = eventProvider.events[index];
                       return DestinationTile(
-                        imgThumbnail: event.imgThumbnail,
-                        name: event.name,
-                        price: event.price,
+                        imgThumbnail: event.image,
+                        name: event.nama,
+                        price: event.harga,
                         onTap: () {
-                          print(event.name);
+                          print(event.nama);
 
                           // Navigator.push(
                           //   context,
@@ -103,7 +103,7 @@ class _ExploreEventPageState extends State<ExploreEventPage> {
                         },
                         onLongPress: () {
                           print('tekan lama');
-                          print(event.name);
+                          print(event.nama);
                           showDialog(
                             context: context,
                             builder: (context) {

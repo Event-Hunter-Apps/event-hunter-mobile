@@ -280,6 +280,32 @@ class _SignInPageState extends State<SignInPage> {
               onTap: () {
                 // Navigator.pushNamed(context, '/sign-up');
                 print('forget password');
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    duration: Duration(seconds: 2),
+                    backgroundColor: successColor,
+                    content: Text(
+                      'Berhasil Login',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                );
+                Future.delayed(Duration(seconds: 2), () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      duration: Duration(seconds: 2),
+                      backgroundColor: successColor,
+                      content: Text(
+                        'Halaman dialihkan',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  );
+                });
+                Future.delayed(Duration(seconds: 5), () async {
+                  await Navigator.pushNamedAndRemoveUntil(
+                      context, '/home', (route) => false);
+                });
               },
               child: Text(
                 'click here',

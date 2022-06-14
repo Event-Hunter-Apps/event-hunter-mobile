@@ -34,7 +34,7 @@ class PreviewEventPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 image: DecorationImage(
                   image: NetworkImage(
-                    eventModel.imgThumbnail!,
+                    eventModel.image!,
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -47,7 +47,7 @@ class PreviewEventPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    eventModel.name!,
+                    eventModel.nama!,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -56,7 +56,7 @@ class PreviewEventPage extends StatelessWidget {
                   ),
                   Text('Starting from'),
                   Text(
-                    'Rp ${eventModel.price!}',
+                    'Rp ${eventModel.harga!}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

@@ -48,7 +48,8 @@ class EventProvider with ChangeNotifier {
     changeState(EventState.loading);
 
     try {
-      List<EventModel> events = await EventAPI.getEventFromAPI();
+      List<EventModel> events =
+          await EventAPI.getEventFromAPI() as List<EventModel>;
 
       _events = events;
 
