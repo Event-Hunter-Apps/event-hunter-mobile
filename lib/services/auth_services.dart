@@ -9,28 +9,28 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AuthService {
   // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  // Future<UserModel> signIn({
-  //   required String email,
-  //   required String password,
-  // }) async {
-  //   try {
-  //     // note : proses sign in dengan email & password
-  //     UserCredential userCredential =
-  //         await _firebaseAuth.signInWithEmailAndPassword(
-  //       email: email,
-  //       password: password,
-  //     );
-
-  //     // note : mencari user yang ada pada firestore berdasarkan user id (uid)
-  //     UserModel user =
-  //         await UserService().getUserById(userCredential.user!.uid);
-
-  //     // note : mereturn user
-  //     return user;
-  //   } catch (e) {
-  //     throw e;
-  //   }
-  // }
+  Future<UserModel> signIn({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      String base_url = 'http://10.0.2.2:8000/api/login';
+      print(base_url);
+      var response = await Dio().post('http://10.0.2.2:8000/api/login',
+          data: {
+            "email": email,
+            "password": password,
+          },
+          options: Options(
+            headers: {"Accept": "application/json"},
+          ));
+      final user = UserModel.createUser(response.data);
+      return user;
+    } catch (e) {
+      print('masuk Error service');
+      throw e;
+    }
+  }
 
   Future<UserModel> signUp({
     required String email,

@@ -119,43 +119,43 @@ class AuthProvider with ChangeNotifier {
   //   }
   // }
 
-  // Future<bool> signIn({
-  //   required String email,
-  //   required String password,
-  // }) async {
-  //   changeState(AuthState.loading);
-  //   try {
-  //     UserModel user = await AuthService().signIn(
-  //       email: email,
-  //       password: password,
-  //     );
+  Future<bool> signIn({
+    required String email,
+    required String password,
+  }) async {
+    changeState(AuthState.loading);
+    try {
+      UserModel user = await AuthService().signIn(
+        email: email,
+        password: password,
+      );
 
-  //     _user = user;
+      _user = user;
 
-  //     // note : SharedPref
+      // note : SharedPref
 
-  //     SharedPreferences prefs = await SharedPreferences.getInstance();
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  //     String userSaved = json.encode(_user.toJson());
-  //     prefs.setString('userSaved', userSaved);
+      // String userSaved = json.encode(_user.toJson());
+      // prefs.setString('userSaved', userSaved);
 
-  //     _user = UserModel.fromJson(json.decode(userSaved));
+      // _user = UserModel.fromJson(json.decode(userSaved));
 
-  //     // note : End
+      // note : End
 
-  //     changeState(AuthState.none);
+      changeState(AuthState.none);
 
-  //     return true;
-  //   } catch (e) {
-  //     print(e.toString() + " { disini errornya }");
+      return true;
+    } catch (e) {
+      print(e.toString() + " { disini errornya }");
 
-  //     changeState(AuthState.error);
+      changeState(AuthState.error);
 
-  //     throw e;
+      throw e;
 
-  //     return false;
-  //   }
-  // }
+      return false;
+    }
+  }
 
   // Future<void> getUserActive() async {
   //   try {
