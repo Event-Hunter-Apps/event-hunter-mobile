@@ -62,6 +62,20 @@ class AuthService {
     }
   }
 
+  Future<void> signOut(String token) async {
+    try {
+      print("masuk ke service dan in tokenya $token");
+      var response = await Dio().get('http://10.0.2.2:8000/api/logout',
+          options: Options(
+            headers: {
+              "Accept": "application/json",
+              "Authorization": "Bearer $token"
+            },
+          ));
+    } catch (e) {
+      throw e;
+    }
+  }
   // Future<void> signOut() async {
   //   try {
   //     await _firebaseAuth.signOut();
@@ -99,5 +113,23 @@ class AuthService {
   //     throw e;
   //   }
   // }
+  Future<UserModel> getUserByToken(String token) async {
+    try {
+      // Note : Untuk Register pada Firebase Auth
+      // * (belum tersimpan ke firestore)
+      var response = await Dio().get('http://10.0.2.2:8000/api/my-profile',
+          options: Options(
+            headers: {
+              "Accept": "application/json",
+              "Authorization": "Bearer $token"
+            },
+          ));
 
+      final user = UserModel.createUser(response.data);
+      return user;
+    } catch (e) {
+      print('masuk Error service');
+      throw e;
+    }
+  }
 }

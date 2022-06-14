@@ -20,31 +20,31 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
 
-    // Provider.of<AuthProvider>(context, listen: false).getUserActive();
+    Provider.of<AuthProvider>(context, listen: false).getUserActive();
   }
 
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
-    // UserModel user = authProvider.user;
+    UserModel user = authProvider.user;
 
     handleSignOut() async {
-      // if (await authProvider.signOut()) {
-      //   // Navigator.pushNamed(context, '/sign-in');
-      //   Navigator.pushNamedAndRemoveUntil(
-      //       context, '/sign-in', (route) => false);
-      // } else {
-      //   ScaffoldMessenger.of(context).showSnackBar(
-      //     SnackBar(
-      //       backgroundColor: alertColor,
-      //       content: Text(
-      //         'Gagal Logout',
-      //         textAlign: TextAlign.center,
-      //       ),
-      //     ),
-      //   );
-      // }
+      if (await authProvider.signOut()) {
+        // Navigator.pushNamed(context, '/sign-in');
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/sign-in', (route) => false);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Gagal Logout',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
 
       // note : hanya untuk navigasi sementara
       Navigator.pushNamedAndRemoveUntil(context, '/sign-in', (route) => false);
@@ -79,16 +79,16 @@ class _ProfilePageState extends State<ProfilePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        // '${user.fullName}',
-                        'Full Name',
+                        '${user.fullName}',
+                        // 'Full Name',
                         style: secondaryTextStyle.copyWith(
                           fontSize: 24,
                           fontWeight: bold,
                         ),
                       ),
                       Text(
-                        // '${user.email}',
-                        'Email',
+                        '${user.email}',
+                        // 'Email',
                         style: mainTextStyle.copyWith(
                           fontSize: 16,
                           fontWeight: semiBold,

@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:event_hunter/models/user_model.dart';
 import 'package:event_hunter/services/auth_services.dart';
+import 'package:event_hunter/services/user_service.dart';
 
 import 'package:flutter/cupertino.dart';
 
@@ -58,8 +59,10 @@ class AuthProvider with ChangeNotifier {
 
       // note : SharedPref
 
-      // SharedPreferences prefs = await SharedPreferences.getInstance();
-
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      if (user.token != null) {
+        prefs.setString('token', user.token!);
+      }
       // String userSaved = json.encode(_user.toJson());
       // prefs.setString('userSaved', userSaved);
 
@@ -134,6 +137,43 @@ class AuthProvider with ChangeNotifier {
 
       // note : SharedPref
 
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      if (user.token != null) {
+        prefs.setString('token', user.token!);
+      }
+      // String userSaved = json.encode(_user.toJson());
+      // prefs.setString('userSaved', userSaved);
+
+      // _user = UserModel.fromJson(json.decode(userSaved));
+
+      // note : End
+
+      changeState(AuthState.none);
+
+      return true;
+    } catch (e) {
+      print(e.toString() + " { disini errornya }");
+
+      changeState(AuthState.error);
+
+      throw e;
+
+      return false;
+    }
+  }
+
+  Future<bool> getUserActive() async {
+    // NOTE bagian bawah klo dijalanin error makanya gua comment
+    // changeState(AuthState.loading);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final String? token = prefs.getString('token');
+      UserModel user = await AuthService().getUserByToken(token!);
+
+      _user = user;
+
+      // note : SharedPref
+
       // SharedPreferences prefs = await SharedPreferences.getInstance();
 
       // String userSaved = json.encode(_user.toJson());
@@ -156,7 +196,6 @@ class AuthProvider with ChangeNotifier {
       return false;
     }
   }
-
   // Future<void> getUserActive() async {
   //   try {
   //     final currentUser = FirebaseAuth.instance.currentUser;
@@ -180,16 +219,19 @@ class AuthProvider with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  // Future<bool> signOut() async {
-  //   try {
-  //     SharedPreferences prefs = await SharedPreferences.getInstance();
-  //     prefs.remove('userSaved');
-  //     await AuthService().signOut();
-  //     print('Berhasil Logout');
-  //     return true;
-  //   } catch (e) {
-  //     print(e.toString() + " { disini errornya }");
-  //     return false;
-  //   }
-  // }
+  Future<bool> signOut() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final String? token = prefs.getString('token');
+      print("masuk ke provider dan ini tokenya $token");
+      await AuthService().signOut(token!);
+      prefs.remove('userSaved');
+      prefs.remove('token');
+      print('Berhasil Logout');
+      return true;
+    } catch (e) {
+      print(e.toString() + " { disini errornya }");
+      return false;
+    }
+  }
 }
