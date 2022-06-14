@@ -84,43 +84,46 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-  // Future<bool> updateProfile({
-  //   required String fullName,
-  //   required int phoneNumber,
-  // }) async {
-  //   changeState(AuthState.loading);
-  //   try {
-  //     UserModel user = await AuthService().updateUser(
-  //       fullName: fullName,
-  //       phoneNumber: phoneNumber,
-  //     );
+  Future<bool> updateProfile({
+    required String fullName,
+    required String phoneNumber,
+  }) async {
+    changeState(AuthState.loading);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final String? token = prefs.getString('token');
+      UserModel user = await AuthService().updateUser(
+        fullName: fullName,
+        phoneNumber: phoneNumber,
+        token: token!,
+      );
 
-  //     _user = user;
+      _user = user;
 
-  //     // note : SharedPref
+      // note : SharedPref
 
-  //     SharedPreferences prefs = await SharedPreferences.getInstance();
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
 
-  //     String userSaved = json.encode(_user.toJson());
-  //     prefs.setString('userSaved', userSaved);
+      // String userSaved = json.encode(_user.toJson());
+      // prefs.setString('userSaved', userSaved);
 
-  //     _user = UserModel.fromJson(json.decode(userSaved));
+      // _user = UserModel.fromJson(json.decode(userSaved));
 
-  //     // note : End
+      // note : End
 
-  //     changeState(AuthState.none);
+      changeState(AuthState.none);
 
-  //     return true;
-  //   } catch (e) {
-  //     print(e.toString() + " { disini errornya }");
+      return true;
+    } catch (e) {
+      print(e.toString() + " { disini errornya }");
 
-  //     changeState(AuthState.error);
+      changeState(AuthState.error);
 
-  //     throw e;
+      throw e;
 
-  //     return false;
-  //   }
-  // }
+      return false;
+    }
+  }
 
   Future<bool> signIn({
     required String email,
@@ -168,7 +171,7 @@ class AuthProvider with ChangeNotifier {
     try {
       final prefs = await SharedPreferences.getInstance();
       final String? token = prefs.getString('token');
-      UserModel user = await AuthService().getUserByToken(token!);
+      UserModel user = await AuthService().getUserByToken(token: token!);
 
       _user = user;
 
@@ -224,7 +227,7 @@ class AuthProvider with ChangeNotifier {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       final String? token = prefs.getString('token');
       print("masuk ke provider dan ini tokenya $token");
-      await AuthService().signOut(token!);
+      await AuthService().signOut(token: token!);
       prefs.remove('userSaved');
       prefs.remove('token');
       print('Berhasil Logout');
