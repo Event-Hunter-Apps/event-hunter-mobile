@@ -5,7 +5,7 @@ class MyTicketPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool tiketAvailable = false;
+    bool tiketAvailable = true;
 
     Widget noTiket() {
       return Container(
@@ -237,8 +237,16 @@ class _TicketListState extends State<TicketList> {
       // ignore: avoid_unnecessary_containers
       body: Container(
         child: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (_, int index) => listDataItem(listItem[0].name),
+          itemCount: 2,
+          itemBuilder: (_, int index) => GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                '/detail-tiket',
+              );
+            },
+            child: listDataItem(listItem[0].name),
+          ),
         ),
       ),
     );

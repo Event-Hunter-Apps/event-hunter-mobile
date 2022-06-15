@@ -1,24 +1,13 @@
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class DetailTiketPage extends StatefulWidget {
+  const DetailTiketPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: TicketPaid(),
-    );
-  }
+  State<DetailTiketPage> createState() => _DetailTiketPageState();
 }
 
-class TicketPaid extends StatefulWidget {
-  const TicketPaid({Key? key}) : super(key: key);
-
-  @override
-  State<TicketPaid> createState() => _TicketPaidState();
-}
-
-class _TicketPaidState extends State<TicketPaid> {
+class _DetailTiketPageState extends State<DetailTiketPage> {
   @override
   Widget build(BuildContext context) {
     AppBar appBar() {
@@ -34,7 +23,9 @@ class _TicketPaidState extends State<TicketPaid> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             child: const Icon(Icons.arrow_back_rounded),
           ),
         ),
