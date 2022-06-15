@@ -146,6 +146,8 @@ class _SignUpPageState extends State<SignUpPage> {
       );
     }
 
+    // widget untuk menambahkan title
+
     Widget title() {
       return Container(
         child: Text(
