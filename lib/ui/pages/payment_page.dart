@@ -38,7 +38,9 @@ class _PaymentPageState extends State<PaymentPage> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             child: const Icon(Icons.arrow_back_rounded),
           ),
         ),

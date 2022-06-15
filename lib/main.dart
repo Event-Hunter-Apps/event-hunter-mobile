@@ -6,6 +6,7 @@ import 'package:event_hunter/models/user_model.dart';
 import 'package:event_hunter/providers/auth_provider.dart';
 import 'package:event_hunter/providers/event_provider.dart';
 import 'package:event_hunter/providers/page_provider.dart';
+import 'package:event_hunter/ui/pages/daftar_tiket_available_page.dart';
 import 'package:event_hunter/ui/pages/edit_profile_page.dart';
 import 'package:event_hunter/ui/pages/explore_event_page.dart';
 import 'package:event_hunter/ui/pages/home/main_page.dart';
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
           '/sign-up': (context) => SignUpPage(),
           '/home': (context) => MainPage(),
           '/explore-location': (context) => ExploreEventPage(),
+          '/daftar-tiket-available': (context) => DaftarTiketAvailablePage(),
           '/profile-page': (context) => ProfilePage(),
           '/edit-profile-page': (context) => EditProfilePage(),
 

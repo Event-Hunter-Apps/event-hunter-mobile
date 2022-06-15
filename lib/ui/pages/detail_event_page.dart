@@ -423,13 +423,9 @@ class _DetailEventPageState extends State<DetailEventPage> {
               });
 
               Future.delayed(Duration(seconds: 2), () async {
-                Navigator.push(
+                Navigator.pushNamed(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return PaymentPage();
-                    },
-                  ),
+                  '/daftar-tiket-available',
                 );
               });
             },

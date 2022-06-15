@@ -1,32 +1,36 @@
-// ignore_for_file: deprecated_member_use, must_be_immutable, avoid_unnecessary_containers
+// ignore_for_file: deprecated_member_use, must_be_immutable, avoid_unnecessary_containers, prefer_const_constructors
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class DaftarTiketAvailablePage extends StatefulWidget {
+  DaftarTiketAvailablePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: DaftarTiket(),
-    );
-  }
+  State<DaftarTiketAvailablePage> createState() =>
+      _DaftarTiketAvailablePageState();
 }
 
-class DaftarTiket extends StatefulWidget {
-  const DaftarTiket({Key? key}) : super(key: key);
-
-  @override
-  State<DaftarTiket> createState() => _DaftarTiketState();
-}
-
-class _DaftarTiketState extends State<DaftarTiket> {
+class _DaftarTiketAvailablePageState extends State<DaftarTiketAvailablePage> {
   @override
   Widget build(BuildContext context) {
+    var listItem = [
+      Item(
+        title: 'Dewasaaa',
+        subtitle: 'Tiket Dewasa',
+        price: 10000,
+        total: 0,
+      ),
+      Item(
+        title: 'Anak-Anak',
+        subtitle: 'Tiket Anak-Anak',
+        price: 5000,
+        total: 0,
+      ),
+    ];
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFFFFF),
+        backgroundColor: Color(0xFFFFFFFF),
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Tickets Available',
           style: TextStyle(
             color: Colors.black87,
@@ -37,14 +41,16 @@ class _DaftarTiketState extends State<DaftarTiket> {
           height: 10,
           width: 10,
           child: FlatButton(
-            padding: const EdgeInsets.only(
+            padding: EdgeInsets.only(
               left: 15,
             ),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
             color: Colors.white,
-            onPressed: () {},
-            child: const Icon(Icons.arrow_back_rounded),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back_rounded),
           ),
         ),
       ),
@@ -52,19 +58,26 @@ class _DaftarTiketState extends State<DaftarTiket> {
         child: Column(
           children: [
             SizedBox(
-              height: 400.0,
+              height: 600.0,
               child: ListView.builder(
-                itemCount: 6,
-                itemBuilder: (_, int index) => ListDataItem(listItem[0].title),
+                itemCount: listItem.length,
+                itemBuilder: (_, int index) => ListDataItem(
+                  itemName: listItem[index].title,
+                  itemDeskripsi: listItem[index].subtitle,
+                  itemPrice: listItem[index].price,
+                  itemTotal: listItem[index].total,
+                ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
+              padding: EdgeInsets.only(
                 top: 20.0,
                 bottom: 30.0,
               ),
               child: ElevatedButton(
-                  onPressed: () {}, child: const Text('Checkout')),
+                onPressed: () {},
+                child: Text('Checkout'),
+              ),
             ),
           ],
         ),
@@ -73,11 +86,25 @@ class _DaftarTiketState extends State<DaftarTiket> {
   }
 }
 
-class ListDataItem extends StatelessWidget {
+class ListDataItem extends StatefulWidget {
   String itemName;
+  String itemDeskripsi;
+  int itemPrice;
+  int itemTotal;
 
-  ListDataItem(this.itemName, {Key? key}) : super(key: key);
+  ListDataItem({
+    required this.itemName,
+    required this.itemDeskripsi,
+    required this.itemPrice,
+    required this.itemTotal,
+    Key? key,
+  }) : super(key: key);
 
+  @override
+  State<ListDataItem> createState() => _ListDataItemState();
+}
+
+class _ListDataItemState extends State<ListDataItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -85,7 +112,7 @@ class ListDataItem extends StatelessWidget {
       child: Card(
         elevation: 0.0,
         child: Padding(
-          padding: const EdgeInsets.only(
+          padding: EdgeInsets.only(
             top: 10.0,
             left: 15.0,
             right: 15.0,
@@ -94,40 +121,44 @@ class ListDataItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    listItem[0].title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.itemName,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 5.0,
-                    ),
-                    child: Text(
-                      listItem[0].subtitle,
-                      style: const TextStyle(
-                        color: Colors.black54,
+                    Padding(
+                      padding: EdgeInsets.only(
+                        top: 5.0,
+                      ),
+                      child: Text(
+                        widget.itemDeskripsi,
+                        style: TextStyle(
+                          color: Colors.black54,
+                        ),
+                        maxLines: 2,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    listItem[0].price,
-                    style: const TextStyle(
+                    ('Rp ${widget.itemPrice}'),
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 5.0, 5.0, 3.0),
+                    padding: EdgeInsets.fromLTRB(0.0, 5.0, 5.0, 3.0),
                     child: Row(
                       children: [
                         SizedBox(
@@ -137,7 +168,7 @@ class ListDataItem extends StatelessWidget {
                             onPressed: () {},
                             style: ButtonStyle(
                               padding: MaterialStateProperty.all<EdgeInsets>(
-                                  const EdgeInsets.all(5.0)),
+                                  EdgeInsets.all(5.0)),
                               foregroundColor: MaterialStateProperty.all<Color>(
                                   Colors.white),
                               backgroundColor: MaterialStateProperty.all<Color>(
@@ -149,7 +180,7 @@ class ListDataItem extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            child: const Text(
+                            child: Text(
                               '-',
                               // style: TextStyle(
                               //   fontWeight: FontWeight.bold,
@@ -159,17 +190,21 @@ class ListDataItem extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
+                          padding: EdgeInsets.only(
                             left: 5.0,
                           ),
                           child: SizedBox(
                             width: 35.0,
                             height: 20.0,
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  widget.itemTotal + 1;
+                                });
+                              },
                               style: ButtonStyle(
                                 padding: MaterialStateProperty.all<EdgeInsets>(
-                                    const EdgeInsets.all(5.0)),
+                                    EdgeInsets.all(5.0)),
                                 foregroundColor:
                                     MaterialStateProperty.all<Color>(
                                         Colors.white),
@@ -183,7 +218,7 @@ class ListDataItem extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              child: const Text(
+                              child: Text(
                                 '+',
                                 // style: TextStyle(
                                 //   fontWeight: FontWeight.bold,
@@ -193,10 +228,10 @@ class ListDataItem extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const VerticalDivider(),
+                        VerticalDivider(),
                         Text(
-                          listItem[0].total,
-                          style: const TextStyle(
+                          widget.itemTotal.toString(),
+                          style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
@@ -217,8 +252,8 @@ class ListDataItem extends StatelessWidget {
 class Item {
   String title;
   String subtitle;
-  String price;
-  String total;
+  int price;
+  int total;
 
   Item({
     required this.title,
@@ -227,12 +262,3 @@ class Item {
     required this.total,
   });
 }
-
-var listItem = [
-  Item(
-    title: '[Dummy] Lorem Ipsum',
-    subtitle: 'Pellentesque duis at quis convallis nunc',
-    price: 'Rp 0',
-    total: '0',
-  ),
-];
