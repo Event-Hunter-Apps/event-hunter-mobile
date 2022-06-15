@@ -125,6 +125,7 @@ class _SignInPageState extends State<SignInPage> {
       );
     }
 
+    // widget email input
     Widget emailInput() {
       return Container(
         margin: EdgeInsets.only(top: 40),
