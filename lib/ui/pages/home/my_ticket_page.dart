@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class MyTicketPage extends StatelessWidget {
-  const MyTicketPage({Key? key}) : super(key: key);
+  MyTicketPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class MyTicketPage extends StatelessWidget {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               SizedBox(
                 width: 200,
                 height: 200,
@@ -56,8 +56,8 @@ class MyTicketPage extends StatelessWidget {
           children: [
             Container(
               height: 130,
-              // margin: const EdgeInsets.all(8.0),
-              padding: const EdgeInsets.all(10.0),
+              // margin:  EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -66,14 +66,14 @@ class MyTicketPage extends StatelessWidget {
                     children: [
                       Text(
                         listItem[0].title,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 17.0,
                         ),
                       ),
                       Text(
                         listItem[0].price,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 17.0,
                           color: Colors.cyan,
@@ -82,18 +82,18 @@ class MyTicketPage extends StatelessWidget {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
+                    padding: EdgeInsets.only(
                       top: 5.0,
                     ),
                     child: Text(
                       listItem[0].tanggal,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 14.0,
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
+                    padding: EdgeInsets.only(
                       top: 5.0,
                     ),
                     child: Row(
@@ -101,11 +101,11 @@ class MyTicketPage extends StatelessWidget {
                       children: [
                         Text(
                           listItem[0].timeStart,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 14.0,
                           ),
                         ),
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(
                             left: 15.0,
                             top: 3.0,
@@ -118,12 +118,12 @@ class MyTicketPage extends StatelessWidget {
                         ),
                         Center(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 4),
+                            padding: EdgeInsets.only(top: 4),
                             // ignore: sized_box_for_whitespace
                             child: Container(
                               height: .5,
                               width: MediaQuery.of(context).size.width * 0.3,
-                              child: const DecoratedBox(
+                              child: DecoratedBox(
                                 decoration: BoxDecoration(
                                   color: Colors.black54,
                                 ),
@@ -131,7 +131,7 @@ class MyTicketPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(
                             right: 15.0,
                             top: 3.0,
@@ -144,7 +144,7 @@ class MyTicketPage extends StatelessWidget {
                         ),
                         Text(
                           listItem[0].timeEnd,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 14.0,
                           ),
                         ),
@@ -152,10 +152,10 @@ class MyTicketPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
+                    padding: EdgeInsets.only(top: 10.0),
                     child: Text(
                       listItem[0].name,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 17.0,
                       ),
@@ -164,14 +164,14 @@ class MyTicketPage extends StatelessWidget {
                 ],
               ),
             ),
-            const Divider(),
+            Divider(),
             SizedBox(
               width: double.infinity,
               height: 50.0,
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 5),
+                padding: EdgeInsets.only(bottom: 5),
                 child: Padding(
-                  padding: const EdgeInsets.only(
+                  padding: EdgeInsets.only(
                     bottom: 5.0,
                     left: 10.0,
                     right: 10.0,
@@ -187,7 +187,7 @@ class MyTicketPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(50)),
                           color: Colors.black12,
                           onPressed: () {},
-                          child: const Icon(
+                          child: Icon(
                             Icons.favorite,
                             color: Colors.black45,
                           ),
@@ -195,14 +195,14 @@ class MyTicketPage extends StatelessWidget {
                       ),
                       TextButton(
                         style: TextButton.styleFrom(
-                          textStyle: const TextStyle(
+                          textStyle: TextStyle(
                             fontSize: 15,
                             color: Colors.cyan,
                             decoration: TextDecoration.underline,
                           ),
                         ),
                         onPressed: () {},
-                        child: const Text('Lihat detail'),
+                        child: Text('Lihat detail'),
                       ),
                     ],
                   ),
@@ -219,7 +219,7 @@ class MyTicketPage extends StatelessWidget {
 }
 
 class TicketList extends StatefulWidget {
-  const TicketList({Key? key}) : super(key: key);
+  TicketList({Key? key}) : super(key: key);
 
   @override
   State<TicketList> createState() => _TicketListState();
@@ -241,9 +241,9 @@ class _TicketListState extends State<TicketList> {
     CheckoutProvider checkoutProvider = Provider.of<CheckoutProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFFFFF),
+        backgroundColor: Color(0xFFFFFFFF),
         elevation: 0,
-        title: const Text('Tickets Available',
+        title: Text('Tickets Available',
             style: TextStyle(color: Colors.black87, fontSize: 13)),
       ),
 
@@ -255,7 +255,7 @@ class _TicketListState extends State<TicketList> {
             onTap: () {
               Navigator.pushNamed(
                 context,
-                '/detail-tiket',
+                '/detail-tiket-page',
               );
             },
             child: listDataItem(listItem[0].name),
@@ -283,8 +283,8 @@ class listDataItem extends StatelessWidget {
         children: [
           Container(
             height: 130,
-            // margin: const EdgeInsets.all(8.0),
-            padding: const EdgeInsets.all(10.0),
+            // margin:  EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -293,14 +293,14 @@ class listDataItem extends StatelessWidget {
                   children: [
                     Text(
                       listItem[0].title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 17.0,
                       ),
                     ),
                     Text(
                       listItem[0].price,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 17.0,
                         color: Colors.cyan,
@@ -309,18 +309,18 @@ class listDataItem extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
+                  padding: EdgeInsets.only(
                     top: 5.0,
                   ),
                   child: Text(
                     listItem[0].tanggal,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 14.0,
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
+                  padding: EdgeInsets.only(
                     top: 5.0,
                   ),
                   child: Row(
@@ -328,11 +328,11 @@ class listDataItem extends StatelessWidget {
                     children: [
                       Text(
                         listItem[0].timeStart,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 14.0,
                         ),
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(
                           left: 15.0,
                           top: 3.0,
@@ -345,12 +345,12 @@ class listDataItem extends StatelessWidget {
                       ),
                       Center(
                         child: Padding(
-                          padding: const EdgeInsets.only(top: 4),
+                          padding: EdgeInsets.only(top: 4),
                           // ignore: sized_box_for_whitespace
                           child: Container(
                             height: .5,
                             width: MediaQuery.of(context).size.width * 0.3,
-                            child: const DecoratedBox(
+                            child: DecoratedBox(
                               decoration: BoxDecoration(
                                 color: Colors.black54,
                               ),
@@ -358,7 +358,7 @@ class listDataItem extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(
                           right: 15.0,
                           top: 3.0,
@@ -371,7 +371,7 @@ class listDataItem extends StatelessWidget {
                       ),
                       Text(
                         listItem[0].timeEnd,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 14.0,
                         ),
                       ),
@@ -379,10 +379,10 @@ class listDataItem extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 10.0),
+                  padding: EdgeInsets.only(top: 10.0),
                   child: Text(
                     listItem[0].name,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 17.0,
                     ),
@@ -391,14 +391,14 @@ class listDataItem extends StatelessWidget {
               ],
             ),
           ),
-          const Divider(),
+          Divider(),
           SizedBox(
             width: double.infinity,
             height: 50.0,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 5),
+              padding: EdgeInsets.only(bottom: 5),
               child: Padding(
-                padding: const EdgeInsets.only(
+                padding: EdgeInsets.only(
                   bottom: 5.0,
                   left: 10.0,
                   right: 10.0,
@@ -406,30 +406,34 @@ class listDataItem extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: 40.0,
-                      width: 40.0,
-                      child: FlatButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                        color: Colors.black12,
-                        onPressed: () {},
-                        child: const Icon(
-                          Icons.favorite,
+                    InkWell(
+                      onTap: () {
+                        print('Dowload');
+                      },
+                      child: Container(
+                        height: 40.0,
+                        width: 40.0,
+                        child: Icon(
+                          Icons.download,
                           color: Colors.black45,
                         ),
                       ),
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
-                        textStyle: const TextStyle(
+                        textStyle: TextStyle(
                           fontSize: 15,
                           color: Colors.cyan,
                           decoration: TextDecoration.underline,
                         ),
                       ),
-                      onPressed: () {},
-                      child: const Text('Lihat detail'),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/detail-tiket-page',
+                        );
+                      },
+                      child: Text('Lihat detail'),
                     ),
                   ],
                 ),

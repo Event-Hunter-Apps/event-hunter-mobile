@@ -69,10 +69,10 @@ class _DetailTiketPageState extends State<DetailTiketPage> {
                             height: 100.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10.0),
-                              image: const DecorationImage(
-                                image: AssetImage('assets/monas.jpg'),
-                                fit: BoxFit.cover,
-                              ),
+                              // image: const DecorationImage(
+                              //   image: AssetImage('assets/monas.jpg'),
+                              //   fit: BoxFit.cover,
+                              // ),
                               boxShadow: [
                                 BoxShadow(
                                   color: const Color.fromARGB(255, 49, 49, 49)
@@ -253,7 +253,7 @@ class _DetailTiketPageState extends State<DetailTiketPage> {
                             margin: const EdgeInsets.only(top: 40.0),
                             decoration: const BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage('assets/lunas.png'),
+                                image: AssetImage('assets/img/lunas.png'),
                                 fit: BoxFit.cover,
                               ),
                             ),
