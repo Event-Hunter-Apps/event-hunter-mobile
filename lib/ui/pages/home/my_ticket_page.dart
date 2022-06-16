@@ -1,4 +1,6 @@
+import 'package:event_hunter/providers/checkout_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MyTicketPage extends StatelessWidget {
   const MyTicketPage({Key? key}) : super(key: key);
@@ -225,7 +227,18 @@ class TicketList extends StatefulWidget {
 
 class _TicketListState extends State<TicketList> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await Provider.of<CheckoutProvider>(context, listen: false)
+          .getMyCheckout();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    CheckoutProvider checkoutProvider = Provider.of<CheckoutProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFFFFFFF),

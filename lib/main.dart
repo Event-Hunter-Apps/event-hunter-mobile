@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:event_hunter/models/user_model.dart';
 import 'package:event_hunter/providers/auth_provider.dart';
+import 'package:event_hunter/providers/checkout_provider.dart';
 import 'package:event_hunter/providers/ticket_provider.dart';
 import 'package:event_hunter/providers/event_provider.dart';
 import 'package:event_hunter/providers/page_provider.dart';
@@ -68,6 +69,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => TicketProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CheckoutProvider(),
         ),
       ],
       child: MaterialApp(
