@@ -426,6 +426,7 @@ class _DetailEventPageState extends State<DetailEventPage> {
                 Navigator.pushNamed(
                   context,
                   '/daftar-tiket-available',
+                  arguments: widget.eventModel.id,
                 );
               });
             },

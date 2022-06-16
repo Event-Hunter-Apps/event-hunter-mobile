@@ -4,8 +4,10 @@ import 'dart:convert';
 
 import 'package:event_hunter/models/user_model.dart';
 import 'package:event_hunter/providers/auth_provider.dart';
+import 'package:event_hunter/providers/ticket_provider.dart';
 import 'package:event_hunter/providers/event_provider.dart';
 import 'package:event_hunter/providers/page_provider.dart';
+import 'package:event_hunter/ui/pages/daftar_tiket.dart';
 import 'package:event_hunter/ui/pages/detail_tiket_page.dart';
 import 'package:event_hunter/ui/pages/daftar_tiket_available_page.dart';
 import 'package:event_hunter/ui/pages/edit_profile_page.dart';
@@ -64,6 +66,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => AuthProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => TicketProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -76,7 +81,8 @@ class MyApp extends StatelessWidget {
           '/sign-up': (context) => SignUpPage(),
           '/home': (context) => MainPage(),
           '/explore-location': (context) => ExploreEventPage(),
-          '/daftar-tiket-available': (context) => DaftarTiketAvailablePage(),
+          // '/daftar-tiket-available': (context) => DaftarTiketAvailablePage(),
+          '/daftar-tiket-available': (context) => DaftarTiket(),
           '/detail-tiket': (context) => DetailTiketPage(),
           '/profile-page': (context) => ProfilePage(),
           '/edit-profile-page': (context) => EditProfilePage(),
