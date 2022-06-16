@@ -14,13 +14,13 @@ class CheckoutService {
             },
           ));
       late List<CheckoutModel> checkouts = [];
-      print("dibawah ini adlah loopinggggg");
-      for (var element in response.data["checkouts"]) {
+      print(response.data);
+      for (var element in response.data["checkout"]) {
         print(element);
         var checkout = CheckoutModel.fromJson(element);
         checkouts.add(checkout);
       }
-      print("diatas ini adlah loopinggggg");
+      print(checkouts.toString());
       return checkouts;
     } catch (e) {
       print("masuk di checkout service error");

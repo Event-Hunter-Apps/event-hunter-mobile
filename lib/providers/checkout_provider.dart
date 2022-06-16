@@ -4,11 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CheckoutProvider with ChangeNotifier {
-  late CheckoutModel _checkout;
-  CheckoutModel get checkuot => _checkout;
+  List<CheckoutModel> _checkouts = [];
 
-  set checkout(CheckoutModel checkout) {
-    _checkout = checkout;
+  List<CheckoutModel> get checkuots => _checkouts;
+
+  set checkouts(List<CheckoutModel> checkouts) {
+    _checkouts = checkuots;
     notifyListeners();
   }
 
