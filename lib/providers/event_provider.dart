@@ -2,7 +2,6 @@
 
 import 'package:event_hunter/models/event_model.dart';
 import 'package:event_hunter/services/api/event_api.dart';
-import 'package:event_hunter/services/event_service.dart';
 import 'package:flutter/material.dart';
 
 enum EventState {
