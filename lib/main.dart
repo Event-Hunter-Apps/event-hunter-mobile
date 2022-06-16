@@ -83,7 +83,7 @@ class MyApp extends StatelessWidget {
           '/explore-location': (context) => ExploreEventPage(),
           // '/daftar-tiket-available': (context) => DaftarTiketAvailablePage(),
           '/daftar-tiket-available': (context) => DaftarTiket(),
-          '/detail-tiket': (context) => DetailTiketPage(),
+          '/detail-tiket-page': (context) => DetailTiketPage(),
           '/profile-page': (context) => ProfilePage(),
           '/edit-profile-page': (context) => EditProfilePage(),
 
