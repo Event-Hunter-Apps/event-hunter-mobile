@@ -6,6 +6,7 @@ import 'package:event_hunter/shared/theme.dart';
 import 'package:event_hunter/ui/pages/detail_event_page.dart';
 import 'package:event_hunter/ui/pages/explore_event_page.dart';
 import 'package:event_hunter/ui/pages/loading/home_page_shimmer.dart';
+import 'package:event_hunter/ui/widgets/chip_categories.dart';
 import 'package:event_hunter/ui/widgets/destination_card_carousel.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -189,95 +190,34 @@ class _HomePageState extends State<HomePage> {
                 width: defaultMargin,
               ),
               Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 25,
-                  vertical: 5,
-                ),
-                margin: EdgeInsets.only(right: 8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: primaryColor,
-                ),
-                child: Text(
-                  'Jakarta',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: semiBold,
-                  ),
+                height: 30,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: ClampingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 3,
+                  itemBuilder: (context, index) {
+                    return ChipCategories(
+                      city: 'Jakarta',
+                    );
+                  },
                 ),
               ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 25,
-                  vertical: 5,
-                ),
-                margin: EdgeInsets.only(right: 8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: secondaryColor,
-                ),
-                child: Text(
-                  'Bandung',
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: semiBold,
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 25,
-                  vertical: 5,
-                ),
-                margin: EdgeInsets.only(right: 8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: secondaryColor,
-                ),
-                child: Text(
-                  'Surabaya',
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: semiBold,
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 25,
-                  vertical: 5,
-                ),
-                margin: EdgeInsets.only(right: 8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: secondaryColor,
-                ),
-                child: Text(
-                  'Semarang',
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: semiBold,
-                  ),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 25,
-                  vertical: 5,
-                ),
-                margin: EdgeInsets.only(right: 8),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: secondaryColor,
-                ),
-                child: Text(
-                  'Yogyakarta',
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: semiBold,
-                  ),
-                ),
-              ),
+              // ChipCategories(
+              //   city: 'Jakarta',
+              // ),
+              // ChipCategories(
+              //   city: 'Bandung',
+              // ),
+              // ChipCategories(
+              //   city: 'Yogyakarta',
+              // ),
+              // ChipCategories(
+              //   city: 'Semarang',
+              // ),
+              // ChipCategories(
+              //   city: 'Surabaya',
+              // ),
             ],
           ),
         ),
