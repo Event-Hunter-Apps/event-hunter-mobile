@@ -20,15 +20,9 @@ class _DaftarTiketState extends State<DaftarTiket> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      // await Provider.of<EventProvider>(context, listen: false).getEvents();
       int eventID = ModalRoute.of(context)!.settings.arguments as int;
-
-      print(eventID);
-
       await Provider.of<TicketProvider>(context, listen: false)
           .getTiketsFromAPI(eventID: eventID);
-
-      // await Provider.of<AuthProvider>(context, listen: false).getUserActive();
     });
   }
 
