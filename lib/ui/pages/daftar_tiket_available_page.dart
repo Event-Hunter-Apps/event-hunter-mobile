@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class DaftarTiketAvailablePage extends StatefulWidget {
-  DaftarTiketAvailablePage({Key? key}) : super(key: key);
+  const DaftarTiketAvailablePage({Key? key}) : super(key: key);
 
   @override
   State<DaftarTiketAvailablePage> createState() =>
