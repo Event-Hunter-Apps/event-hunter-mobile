@@ -7,8 +7,6 @@ import 'package:event_hunter/services/user_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  // final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-
   Future<UserModel> signIn({
     required String email,
     required String password,

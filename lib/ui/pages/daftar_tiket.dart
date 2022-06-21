@@ -31,10 +31,9 @@ class _DaftarTiketState extends State<DaftarTiket> {
   @override
   Widget build(BuildContext context) {
     TicketProvider ticketProvider = Provider.of<TicketProvider>(context);
-    CheckoutProvider checkoutPovider = Provider.of<CheckoutProvider>(context);
+
     void handleCheckout() {
       if (ticketProvider.checkOrderIsValid(ticketProvider.tickets.tikets)) {
-        checkoutPovider.createCheckout(tikets: ticketProvider.tickets.tikets);
         Navigator.of(context).push(
           PageTransition(
             child: PaymentPage(),

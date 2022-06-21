@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:event_hunter/models/checkout_model.dart';
 
@@ -36,21 +38,15 @@ class CheckoutService {
     required String token,
   }) async {
     try {
-      List<Orders> orders = [];
+      List<Orders> temp = [];
       for (var element in tikets) {
-        orders.add(Orders(
-          ticketId: element.id,
-          quantity: element.quantity,
-        ));
+        temp.add(Orders(ticketId: element.id, quantity: element.quantity));
       }
 
-      OrderModel orderModel = OrderModel(orders: orders);
-      // * (belum tersimpan ke firestore)
+      OrderModel orders = OrderModel(orders: temp);
 
       var response = await Dio().post('http://10.0.2.2:8000/api/orders',
-          data: {
-            orderModel.toJson(),
-          },
+          data: {"orders": temp},
           options: Options(
             headers: {
               "Accept": "application/json",
@@ -58,9 +54,9 @@ class CheckoutService {
             },
           ));
 
+      print(response.data);
       return true;
     } catch (e) {
-      print('masuk Error ticket api');
       throw e;
     }
   }

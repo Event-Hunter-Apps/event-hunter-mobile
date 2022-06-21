@@ -99,9 +99,8 @@ class _PaymentPageState extends State<PaymentPage> {
             ),
             ElevatedButton(
               onPressed: () {
-                // checkoutPovider.createCheckout(
-                //     tikets: ticketProvider.tickets.tikets);
-
+                checkoutPovider.createCheckout(
+                    tikets: ticketProvider.tickets.tikets);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
