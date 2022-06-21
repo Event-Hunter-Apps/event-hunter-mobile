@@ -20,6 +20,7 @@ class _ExploreEventPageState extends State<ExploreEventPage> {
   @override
   Widget build(BuildContext context) {
     EventProvider eventProvider = Provider.of<EventProvider>(context);
+    eventProvider.getEventsFromAPI(kota: "", nama: "");
     return Scaffold(
       backgroundColor: Color(0xffFaFaFa),
       body: Container(
@@ -71,7 +72,7 @@ class _ExploreEventPageState extends State<ExploreEventPage> {
                 margin: EdgeInsets.only(bottom: 50),
                 child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 180 / 260,
+                      childAspectRatio: 180 / 330,
                       crossAxisSpacing: 25,
                       mainAxisSpacing: 25,
                       crossAxisCount: 2,
