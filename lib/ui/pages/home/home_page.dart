@@ -304,6 +304,7 @@ class _HomePageState extends State<HomePage> {
             viewportFraction: 0.48,
             enlargeCenterPage: true,
             disableCenter: true,
+            enableInfiniteScroll: false,
           ),
           items: eventProvider.events.map(
             (event) {

@@ -18,9 +18,23 @@ class ExploreEventPage extends StatefulWidget {
 
 class _ExploreEventPageState extends State<ExploreEventPage> {
   @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      // await Provider.of<EventProvider>(context, listen: false).getEvents();
+
+      await Provider.of<EventProvider>(context, listen: false)
+          .getEventsFromAPI(nama: "", kota: "");
+
+      // await Provider.of<AuthProvider>(context, listen: false).getUserActive();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     EventProvider eventProvider = Provider.of<EventProvider>(context);
-    eventProvider.getEventsFromAPI(kota: "", nama: "");
+    // eventProvider.getEventsFromAPI(kota: "", nama: "");
     return Scaffold(
       backgroundColor: Color(0xffFaFaFa),
       body: Container(
