@@ -1,6 +1,8 @@
 // ignore_for_file: deprecated_member_use, must_be_immutable, avoid_unnecessary_containers, unnecessary_brace_in_string_interps, prefer_const_constructors
 
+import 'package:event_hunter/providers/checkout_provider.dart';
 import 'package:event_hunter/providers/ticket_provider.dart';
+import 'package:event_hunter/shared/theme.dart';
 import 'package:event_hunter/ui/pages/payment_page.dart';
 import 'package:event_hunter/ui/widgets/cart_card.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +31,29 @@ class _DaftarTiketState extends State<DaftarTiket> {
   @override
   Widget build(BuildContext context) {
     TicketProvider ticketProvider = Provider.of<TicketProvider>(context);
+    CheckoutProvider checkoutPovider = Provider.of<CheckoutProvider>(context);
+    void handleCheckout() {
+      if (ticketProvider.checkOrderIsValid(ticketProvider.tickets.tikets)) {
+        checkoutPovider.createCheckout(tikets: ticketProvider.tickets.tikets);
+        Navigator.of(context).push(
+          PageTransition(
+            child: PaymentPage(),
+            type: PageTransitionType.rightToLeft,
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            duration: Duration(seconds: 2),
+            backgroundColor: alertColor,
+            content: Text(
+              'Tidak ada tiket yang di pilih',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+    }
 
     PreferredSizeWidget appbar() {
       return AppBar(
@@ -70,9 +95,7 @@ class _DaftarTiketState extends State<DaftarTiket> {
                 // children: List.generate(10, (int i) =>  ListTileItem()),
                 itemCount: ticketProvider.tickets.tikets.length,
                 itemBuilder: (_, int index) => CartCard(
-                  itemTitle: ticketProvider.tickets.tikets[index].nama,
-                  deskripsi: ticketProvider.tickets.tikets[index].deskripsi,
-                  harga: ticketProvider.tickets.tikets[index].harga,
+                  tiket: ticketProvider.tickets.tikets[index],
                 ),
               ),
             ),
@@ -86,12 +109,7 @@ class _DaftarTiketState extends State<DaftarTiket> {
                 width: 100.0,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                      PageTransition(
-                        child: PaymentPage(),
-                        type: PageTransitionType.rightToLeft,
-                      ),
-                    );
+                    handleCheckout();
                   },
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(
@@ -121,29 +139,3 @@ class _DaftarTiketState extends State<DaftarTiket> {
     );
   }
 }
-
-class Item {
-  int id;
-  String title;
-  String subtitle;
-  int price;
-  String total;
-
-  Item({
-    required this.id,
-    required this.title,
-    required this.subtitle,
-    required this.price,
-    required this.total,
-  });
-}
-
-var listItem = [
-  Item(
-    id: 1,
-    title: 'Dewasa',
-    subtitle: 'Tiket Dewasa',
-    price: 10000,
-    total: '0',
-  ),
-];

@@ -48,6 +48,7 @@ class Tikets {
   Null updatedAt;
   Null deletedAt;
   Kategori? kategori;
+  late int quantity = 0;
 
   Tikets({
     required this.id,
@@ -60,6 +61,7 @@ class Tikets {
     this.updatedAt,
     this.deletedAt,
     this.kategori,
+    required this.quantity,
   });
 
   Tikets.fromJson(Map<String, dynamic> json) {
@@ -74,6 +76,7 @@ class Tikets {
     deletedAt = json['deleted_at'];
     kategori =
         json['kategori'] != null ? Kategori.fromJson(json['kategori']) : null;
+    quantity = 0;
   }
 
   Map<String, dynamic> toJson() {
@@ -90,6 +93,7 @@ class Tikets {
     if (kategori != null) {
       data['kategori'] = kategori!.toJson();
     }
+    data['quantity'] = quantity;
     return data;
   }
 }

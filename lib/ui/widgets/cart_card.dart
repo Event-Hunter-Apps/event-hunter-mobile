@@ -1,31 +1,28 @@
+import 'package:event_hunter/models/ticket_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/ticket_provider.dart';
 
 class CartCard extends StatefulWidget {
   // final String title;
-
-  final String itemTitle;
-  final String deskripsi;
-  final int harga;
-  final int jumlah;
+  final Tikets tiket;
   const CartCard({
-    required this.itemTitle,
-    required this.deskripsi,
-    required this.harga,
-    this.jumlah = 0,
-    Key? key,
-  }) : super(key: key);
+    required this.tiket,
+  });
 
   @override
   State<CartCard> createState() => _CartCardState();
 }
 
 class _CartCardState extends State<CartCard> {
-  int _itemCount = 0;
+  // int _itemCount = 0;
   @override
   Widget build(BuildContext context) {
+    TicketProvider ticketProvider = Provider.of<TicketProvider>(context);
     return ListTile(
       title: Text(
-        widget.itemTitle,
+        widget.tiket.nama,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
@@ -33,7 +30,7 @@ class _CartCardState extends State<CartCard> {
       subtitle: Padding(
         padding: const EdgeInsets.only(top: 3.0),
         child: Text(
-          widget.deskripsi,
+          widget.tiket.deskripsi,
         ),
       ),
       onTap: null,
@@ -42,6 +39,8 @@ class _CartCardState extends State<CartCard> {
   }
 
   Widget _buildTrailingWidget() {
+    print(widget.tiket.quantity);
+    TicketProvider ticketProvider = Provider.of<TicketProvider>(context);
     return Container(
       margin: const EdgeInsets.only(top: 3.0),
       child: FittedBox(
@@ -50,7 +49,7 @@ class _CartCardState extends State<CartCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Rp ${widget.harga}',
+              'Rp ${widget.tiket.harga}',
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
@@ -71,7 +70,9 @@ class _CartCardState extends State<CartCard> {
                         //     () => _itemCount != 0 ? _itemCount-- : _itemCount);
 
                         setState(() {
-                          _itemCount != 0 ? _itemCount-- : _itemCount;
+                          widget.tiket.quantity != 0
+                              ? ticketProvider.reduceQuantity(widget.tiket)
+                              : widget.tiket.quantity;
                         });
                       },
                       style: ButtonStyle(
@@ -101,7 +102,8 @@ class _CartCardState extends State<CartCard> {
                     width: 35.0,
                     height: 20.0,
                     child: ElevatedButton(
-                      onPressed: () => setState(() => _itemCount++),
+                      onPressed: () => setState(
+                          () => ticketProvider.addQuantity(widget.tiket)),
                       style: ButtonStyle(
                         padding: MaterialStateProperty.all<EdgeInsets>(
                             const EdgeInsets.all(5.0)),
@@ -124,7 +126,7 @@ class _CartCardState extends State<CartCard> {
                   ),
                   const VerticalDivider(),
                   Text(
-                    _itemCount.toString(),
+                    widget.tiket.quantity.toString(),
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),

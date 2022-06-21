@@ -110,4 +110,21 @@ class TicketProvider with ChangeNotifier {
   //     return true;
   //   }
   // }
+
+  void addQuantity(Tikets ticket) {
+    ticket.quantity++;
+  }
+
+  void reduceQuantity(Tikets ticket) {
+    ticket.quantity--;
+  }
+
+  bool checkOrderIsValid(List<Tikets> tikets) {
+    for (var element in tikets) {
+      if (element.quantity != 0) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

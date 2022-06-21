@@ -1,7 +1,10 @@
 // import 'package:event_hunter/models/event_model.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'dart:ffi';
+
 import 'package:dio/dio.dart';
+import 'package:event_hunter/models/order_model.dart';
 import 'package:event_hunter/models/ticket_model.dart';
 
 class TicketApi {

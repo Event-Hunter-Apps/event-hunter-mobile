@@ -1,5 +1,8 @@
+import 'package:event_hunter/providers/checkout_provider.dart';
+import 'package:event_hunter/providers/ticket_provider.dart';
 import 'package:event_hunter/ui/pages/success_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({Key? key}) : super(key: key);
@@ -22,6 +25,8 @@ class _PaymentPageState extends State<PaymentPage> {
 
   @override
   Widget build(BuildContext context) {
+    TicketProvider ticketProvider = Provider.of<TicketProvider>(context);
+    CheckoutProvider checkoutPovider = Provider.of<CheckoutProvider>(context);
     AppBar appBar() {
       return AppBar(
         backgroundColor: const Color(0xFFFFFFFF),
@@ -94,6 +99,9 @@ class _PaymentPageState extends State<PaymentPage> {
             ),
             ElevatedButton(
               onPressed: () {
+                // checkoutPovider.createCheckout(
+                //     tikets: ticketProvider.tickets.tikets);
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(
