@@ -27,12 +27,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      // await Provider.of<EventProvider>(context, listen: false).getEvents();
-
       await Provider.of<EventProvider>(context, listen: false)
-          .getEventsFromAPI(nama: "", kota: "");
-
-      // await Provider.of<AuthProvider>(context, listen: false).getUserActive();
+          .getEventTrending(nama: "");
     });
   }
 
@@ -121,8 +117,18 @@ class _HomePageState extends State<HomePage> {
             border: InputBorder.none,
             suffixIcon: IconButton(
               onPressed: () {
-                eventProvider.getEventsFromAPI(
-                    nama: searchController.text, kota: "");
+                // Navigator.of(context).push(
+
+                //   PageTransition(
+                //     child: ExploreEventPage(),
+                //     type: PageTransitionType.rightToLeft,
+                //   ),
+                // );
+                Navigator.pushNamed(
+                  context,
+                  '/explore-location',
+                  arguments: searchController.text,
+                );
               },
               icon: Container(
                 // width: 60,
@@ -345,7 +351,7 @@ class _HomePageState extends State<HomePage> {
               ask(),
               search(),
               exploreLocationTitle(),
-              categories(),
+              // categories(),
               carouselEvent(),
             ],
           ),

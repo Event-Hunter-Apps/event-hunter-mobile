@@ -31,8 +31,8 @@ class _MainPageState extends State<MainPage> {
     Widget customBottomNav() {
       return ClipRRect(
         borderRadius: BorderRadius.vertical(
-          top: Radius.circular(30),
-          bottom: Radius.circular(30),
+          top: Radius.circular(25),
+          bottom: Radius.circular(25),
         ),
         child: BottomNavigationBar(
           currentIndex: pageProvider.currentIndex,
@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
               icon: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(12),
+                    padding: EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: pageProvider.currentIndex == 0
@@ -58,7 +58,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                     child: Image.asset(
                       'assets/img/icon_page_home.png',
-                      width: 25,
+                      width: 20,
                       color: pageProvider.currentIndex == 0
                           ? primaryColor
                           : whiteColor,
@@ -82,7 +82,7 @@ class _MainPageState extends State<MainPage> {
               icon: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(12),
+                    padding: EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: pageProvider.currentIndex == 1
@@ -91,7 +91,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                     child: Image.asset(
                       'assets/img/icon_page_tickets.png',
-                      width: 25,
+                      width: 20,
                       color: pageProvider.currentIndex == 1
                           ? primaryColor
                           : whiteColor,
@@ -115,7 +115,7 @@ class _MainPageState extends State<MainPage> {
               icon: Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(12),
+                    padding: EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: pageProvider.currentIndex == 2
@@ -124,7 +124,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                     child: Image.asset(
                       'assets/img/icon_page_profile.png',
-                      width: 25,
+                      width: 20,
                       color: pageProvider.currentIndex == 2
                           ? primaryColor
                           : whiteColor,
@@ -177,7 +177,7 @@ class _MainPageState extends State<MainPage> {
         // height: 120,
         // color: Colors.red,
         padding: EdgeInsets.all(0),
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         child: customBottomNav(),
       ),
     );

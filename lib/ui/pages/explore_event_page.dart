@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
+import '../../shared/theme.dart';
+
 class ExploreEventPage extends StatefulWidget {
   const ExploreEventPage({Key? key}) : super(key: key);
 
@@ -17,6 +19,10 @@ class ExploreEventPage extends StatefulWidget {
 }
 
 class _ExploreEventPageState extends State<ExploreEventPage> {
+  TextEditingController searchController = TextEditingController();
+
+  String terima = '';
+
   @override
   void initState() {
     super.initState();
@@ -25,7 +31,7 @@ class _ExploreEventPageState extends State<ExploreEventPage> {
       // await Provider.of<EventProvider>(context, listen: false).getEvents();
 
       await Provider.of<EventProvider>(context, listen: false)
-          .getEventsFromAPI(nama: "", kota: "");
+          .getEventsFromAPI(nama: terima);
 
       // await Provider.of<AuthProvider>(context, listen: false).getUserActive();
     });
@@ -33,8 +39,59 @@ class _ExploreEventPageState extends State<ExploreEventPage> {
 
   @override
   Widget build(BuildContext context) {
+    searchController.text = terima;
+    var args = ModalRoute.of(context)?.settings.arguments as String;
+    setState(() {
+      terima = args;
+      print('Hasil terima : ${terima}');
+    });
+
     EventProvider eventProvider = Provider.of<EventProvider>(context);
-    // eventProvider.getEventsFromAPI(kota: "", nama: "");
+    Widget search() {
+      return Container(
+        margin: EdgeInsets.symmetric(
+          horizontal: defaultMargin,
+        ),
+        padding: EdgeInsets.only(left: 15, top: 0, right: 5, bottom: 0),
+        // height: 45,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(40),
+          border: Border.all(
+            width: 1.5,
+            color: primaryColor,
+          ),
+        ),
+        child: TextField(
+          controller: searchController,
+          decoration: InputDecoration(
+            hintText: 'Looking another location...',
+            hintStyle: secondaryTextStyle.copyWith(
+              fontWeight: medium,
+            ),
+            border: InputBorder.none,
+            suffixIcon: IconButton(
+              onPressed: () {
+                eventProvider.getEventsFromAPI(nama: searchController.text);
+              },
+              icon: Container(
+                // width: 60,
+                // height: 60,
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: primaryColor,
+                ),
+                child: Icon(
+                  Icons.search,
+                  color: whiteColor,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: Color(0xffFaFaFa),
       body: Container(
@@ -52,6 +109,8 @@ class _ExploreEventPageState extends State<ExploreEventPage> {
                     onTap: () {
                       print('Back');
                       Navigator.pop(context);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, "/home", (route) => false);
                     },
                     child: Container(
                       width: 32,
@@ -80,6 +139,7 @@ class _ExploreEventPageState extends State<ExploreEventPage> {
                 ],
               ),
             ),
+            search(),
             Expanded(
               child: Container(
                 // color: Colors.amber,
