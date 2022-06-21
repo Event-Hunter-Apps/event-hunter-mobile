@@ -43,12 +43,17 @@ class EventProvider with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  Future<void> getEventsFromAPI() async {
+  Future<void> getEventsFromAPI({
+    required String nama,
+    required String kota,
+  }) async {
     changeState(EventState.loading);
-
     try {
+      print(nama);
+      print(kota);
       List<EventModel> events =
-          await EventAPI.getEventFromAPI() as List<EventModel>;
+          await EventAPI.getEventFromAPI(nama: nama, kota: kota)
+              as List<EventModel>;
 
       _events = events;
 

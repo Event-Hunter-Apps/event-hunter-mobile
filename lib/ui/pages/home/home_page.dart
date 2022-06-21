@@ -20,6 +20,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController searchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -28,7 +30,7 @@ class _HomePageState extends State<HomePage> {
       // await Provider.of<EventProvider>(context, listen: false).getEvents();
 
       await Provider.of<EventProvider>(context, listen: false)
-          .getEventsFromAPI();
+          .getEventsFromAPI(nama: "", kota: "");
 
       // await Provider.of<AuthProvider>(context, listen: false).getUserActive();
     });
@@ -110,6 +112,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         child: TextField(
+          controller: searchController,
           decoration: InputDecoration(
             hintText: 'Looking another location...',
             hintStyle: secondaryTextStyle.copyWith(
@@ -118,7 +121,8 @@ class _HomePageState extends State<HomePage> {
             border: InputBorder.none,
             suffixIcon: IconButton(
               onPressed: () {
-                print('CARI');
+                eventProvider.getEventsFromAPI(
+                    nama: searchController.text, kota: "");
               },
               icon: Container(
                 // width: 60,
