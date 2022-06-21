@@ -32,7 +32,7 @@ class _SuccessPageState extends State<SuccessPage> {
                 (route) => false,
               );
             },
-            child: Icon(Icons.arrow_back_rounded),
+            child: Icon(Icons.close),
           ),
         ),
       );
@@ -69,136 +69,6 @@ class _SuccessPageState extends State<SuccessPage> {
                         fontSize: 24,
                         fontWeight: bold,
                       ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'Dibeli',
-                                style: blackTextStyle.copyWith(
-                                  fontSize: 13,
-                                  fontWeight: medium,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              'Kamis, 26 Mei 2020',
-                              style: blackTextStyle.copyWith(
-                                fontSize: 13,
-                                fontWeight: reguler,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              child: Text(
-                                'Metode Pembayaran',
-                                style: blackTextStyle.copyWith(
-                                  fontSize: 13,
-                                  fontWeight: medium,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              'Transfer',
-                              style: blackTextStyle.copyWith(
-                                fontSize: 13,
-                                fontWeight: reguler,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              child: Text(
-                                'Rincian Harga',
-                                style: blackTextStyle.copyWith(
-                                  fontSize: 13,
-                                  fontWeight: medium,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              'Rp 250.000',
-                              style: blackTextStyle.copyWith(
-                                fontSize: 13,
-                                fontWeight: reguler,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'Jenis Tiket',
-                              style: blackTextStyle.copyWith(
-                                fontSize: 13,
-                                fontWeight: bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              child: Text(
-                                'Tiket Anak',
-                                style: blackTextStyle.copyWith(
-                                  fontSize: 13,
-                                  fontWeight: medium,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              'Rp 30.000 x 5',
-                              style: blackTextStyle.copyWith(
-                                fontSize: 13,
-                                fontWeight: reguler,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              child: Text(
-                                'Tiket Dewasa',
-                                style: blackTextStyle.copyWith(
-                                  fontSize: 13,
-                                  fontWeight: medium,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              'Rp 50.000 x 2',
-                              style: blackTextStyle.copyWith(
-                                fontSize: 13,
-                                fontWeight: reguler,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
                     ),
                   ),
                 ],

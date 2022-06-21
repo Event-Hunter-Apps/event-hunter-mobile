@@ -7,21 +7,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CheckoutProvider with ChangeNotifier {
   List<CheckoutModel> _checkouts = [];
 
-  List<CheckoutModel> get checkuots => _checkouts;
+  List<CheckoutModel> get checkouts => _checkouts;
 
   set checkouts(List<CheckoutModel> checkouts) {
-    _checkouts = checkuots;
+    _checkouts = checkouts;
     notifyListeners();
   }
 
-  Future<bool> getMyCheckout() async {
+  Future<void> getMyCheckout() async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final String? token = prefs.getString('token');
       List<CheckoutModel> checkouts =
           await CheckoutService().getCheckoutByUserID(token: token!);
-      print(checkouts);
-      return true;
+
+      _checkouts = checkouts;
     } catch (e) {
       print("masuk di checkout provider error");
       throw e;

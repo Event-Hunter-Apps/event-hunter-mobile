@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:event_hunter/models/user_model.dart';
 import 'package:event_hunter/services/user_service.dart';
+import 'package:event_hunter/ui/pages/change_password_page.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -70,6 +71,25 @@ class AuthService {
               "Authorization": "Bearer $token"
             },
           ));
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<void> changePassword({
+    required String password,
+    required String token,
+  }) async {
+    try {
+      var response =
+          await Dio().put('http://10.0.2.2:8000/api/users/change-password',
+              data: {"password", password},
+              options: Options(
+                headers: {
+                  "Accept": "application/json",
+                  "Authorization": "Bearer $token"
+                },
+              ));
     } catch (e) {
       throw e;
     }

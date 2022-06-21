@@ -1,3 +1,5 @@
+import 'package:event_hunter/models/user_model.dart';
+
 class CheckoutModel {
   late int id;
   late int userId;
@@ -8,6 +10,7 @@ class CheckoutModel {
   late String? createdAt;
   late String? updatedAt;
   late String? deletedAt;
+  late String? user;
 
   CheckoutModel({
     required this.id,
@@ -19,6 +22,7 @@ class CheckoutModel {
     required this.createdAt,
     required this.updatedAt,
     required this.deletedAt,
+    required this.user,
   });
 
   CheckoutModel.fromJson(Map<String, dynamic> json) {

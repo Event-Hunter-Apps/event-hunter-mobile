@@ -194,7 +194,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                   // Navigator.pushNamed(context, '/edit-profile-page');
                 },
-                child: menuItem(Icons.help, "Help"),
+                child: menuItem(Icons.key, "Change Password"),
               ),
               SizedBox(
                 height: 30,

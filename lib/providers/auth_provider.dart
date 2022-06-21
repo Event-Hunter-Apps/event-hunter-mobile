@@ -63,6 +63,10 @@ class AuthProvider with ChangeNotifier {
       if (user.token != null) {
         prefs.setString('token', user.token!);
       }
+      print(user.fullName);
+      if (user.token != null) {
+        prefs.setString('nama', user.fullName!);
+      }
       // String userSaved = json.encode(_user.toJson());
       // prefs.setString('userSaved', userSaved);
 
@@ -102,8 +106,9 @@ class AuthProvider with ChangeNotifier {
 
       // note : SharedPref
 
-      // SharedPreferences prefs = await SharedPreferences.getInstance();
-
+      if (user.token != null) {
+        prefs.setString('nama', user.fullName!);
+      }
       // String userSaved = json.encode(_user.toJson());
       // prefs.setString('userSaved', userSaved);
 
@@ -144,6 +149,10 @@ class AuthProvider with ChangeNotifier {
       if (user.token != null) {
         prefs.setString('token', user.token!);
       }
+      if (user.token != null) {
+        prefs.setString('nama', user.fullName!);
+      }
+      print(prefs.getString('nama'));
       // String userSaved = json.encode(_user.toJson());
       // prefs.setString('userSaved', userSaved);
 
@@ -221,6 +230,18 @@ class AuthProvider with ChangeNotifier {
   //   }
   //   notifyListeners();
   // }
+  Future<bool> changePassword({required String password}) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      final String? token = prefs.getString('token');
+      print("masuk ke provider dan ini tokenya $token");
+      await AuthService().changePassword(password: password, token: token!);
+
+      return true;
+    } catch (e) {
+      throw e;
+    }
+  }
 
   Future<bool> signOut() async {
     try {

@@ -24,7 +24,6 @@ class EventProvider with ChangeNotifier {
   // note : End Code Event State
 
   List<EventModel> _events = [];
-
   List<EventModel> get events => _events;
 
   set events(List<EventModel> events) {

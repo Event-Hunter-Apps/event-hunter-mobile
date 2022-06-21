@@ -10,6 +10,19 @@ class DetailTiketPage extends StatefulWidget {
 class _DetailTiketPageState extends State<DetailTiketPage> {
   @override
   Widget build(BuildContext context) {
+    // var args = ModalRoute.of(context)?.settings.arguments as String;
+
+    // String nama;
+    // String alamat;
+    // String tanggal;
+    // String jam_mulai;
+    // String jam_berakhir;
+
+    // setState(() {
+    //   terima = args;
+    //   print('Hasil terima : ${terima}');
+    // });
+
     AppBar appBar() {
       return AppBar(
         elevation: 0.0,
