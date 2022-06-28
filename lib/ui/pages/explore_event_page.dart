@@ -146,7 +146,7 @@ class _ExploreEventPageState extends State<ExploreEventPage> {
                 margin: EdgeInsets.only(bottom: 50),
                 child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 180 / 330,
+                      childAspectRatio: 180 / 260,
                       crossAxisSpacing: 25,
                       mainAxisSpacing: 25,
                       crossAxisCount: 2,

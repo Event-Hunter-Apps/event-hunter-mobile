@@ -83,13 +83,14 @@ class AuthService {
     try {
       var response =
           await Dio().put('http://10.0.2.2:8000/api/users/change-password',
-              data: {"password", password},
+              data: {"password": password},
               options: Options(
                 headers: {
                   "Accept": "application/json",
                   "Authorization": "Bearer $token"
                 },
               ));
+      print(response.data);
     } catch (e) {
       throw e;
     }

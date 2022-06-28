@@ -192,7 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 onTap: () {
                   print('help');
 
-                  // Navigator.pushNamed(context, '/edit-profile-page');
+                  Navigator.pushNamed(context, '/change-password-page');
                 },
                 child: menuItem(Icons.key, "Change Password"),
               ),

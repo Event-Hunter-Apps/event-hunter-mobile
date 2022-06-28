@@ -8,6 +8,7 @@ import 'package:event_hunter/providers/checkout_provider.dart';
 import 'package:event_hunter/providers/ticket_provider.dart';
 import 'package:event_hunter/providers/event_provider.dart';
 import 'package:event_hunter/providers/page_provider.dart';
+import 'package:event_hunter/ui/pages/change_password_page.dart';
 import 'package:event_hunter/ui/pages/daftar_tiket.dart';
 import 'package:event_hunter/ui/pages/detail_tiket_page.dart';
 import 'package:event_hunter/ui/pages/daftar_tiket_available_page.dart';
@@ -90,7 +91,7 @@ class MyApp extends StatelessWidget {
           '/detail-tiket-page': (context) => DetailTiketPage(),
           '/profile-page': (context) => ProfilePage(),
           '/edit-profile-page': (context) => EditProfilePage(),
-
+          '/change-password-page': (context) => ChangePasswordPage()
           // note : TEST API PAGE
           // '/register-response-page': (context) => RegisterResponsePage(),
         },

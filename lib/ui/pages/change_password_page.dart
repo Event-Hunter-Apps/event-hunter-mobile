@@ -45,16 +45,16 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     confirmPasswordController.text = '';
     // roleController.text = user.role!.toString();
 
-    handleUpdateProfile() async {
+    handleChangePassword() async {
       setState(() {
         isLoading = true;
       });
 
       bool passwordSama =
-          newPasswordController.text == confirmPasswordController;
+          newPasswordController.text == confirmPasswordController.text;
 
       try {
-        if (!passwordSama &&
+        if (passwordSama &&
             await authProvider.changePassword(
                 password: newPasswordController.text)) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -62,7 +62,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               duration: Duration(seconds: 2),
               backgroundColor: successColor,
               content: Text(
-                'Profile Berhasil Update',
+                'Password Berhasil Update',
                 textAlign: TextAlign.center,
               ),
             ),
@@ -76,7 +76,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               duration: Duration(seconds: 2),
               backgroundColor: alertColor,
               content: Text(
-                'Password don\'t match',
+                'Password tidak sama',
                 textAlign: TextAlign.center,
               ),
             ),
@@ -103,116 +103,14 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       });
     }
 
-    Widget emailInput() {
-      return Container(
-        margin: EdgeInsets.only(top: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Email Address',
-              style: secondaryTextStyle.copyWith(
-                fontSize: 14,
-                fontWeight: medium,
-              ),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Container(
-              height: 50,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
-              decoration: BoxDecoration(
-                color: disabledColor,
-                borderRadius: BorderRadius.circular(
-                  12,
-                ),
-                border: Border.all(
-                  color: greyColor,
-                  width: 1.5,
-                ),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        enabled: false,
-                        keyboardType: TextInputType.emailAddress,
-                        controller: emailController,
-                        style: secondaryTextStyle,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    Widget roleInput() {
+    Widget newPasswordInput() {
       return Container(
         margin: EdgeInsets.only(top: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Role',
-              style: secondaryTextStyle.copyWith(
-                fontSize: 14,
-                fontWeight: medium,
-              ),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Container(
-              height: 50,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
-              decoration: BoxDecoration(
-                color: disabledColor,
-                borderRadius: BorderRadius.circular(
-                  12,
-                ),
-                border: Border.all(
-                  color: greyColor,
-                  width: 1.5,
-                ),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        enabled: false,
-                        keyboardType: TextInputType.name,
-                        controller: roleController,
-                        style: secondaryTextStyle,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    Widget fullNameInput() {
-      return Container(
-        margin: EdgeInsets.only(top: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Full Name',
+              'Password',
               style: secondaryTextStyle.copyWith(
                 fontSize: 14,
                 fontWeight: medium,
@@ -242,10 +140,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                     Expanded(
                       child: TextFormField(
                         keyboardType: TextInputType.name,
-                        controller: fullNameController,
+                        controller: newPasswordController,
                         style: secondaryTextStyle,
                         decoration: InputDecoration.collapsed(
-                          hintText: 'Your Full Name',
+                          hintText: 'New Password',
                           hintStyle: subtitleTextStyle.copyWith(
                             fontSize: 14,
                             fontWeight: medium,
@@ -254,7 +152,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         validator: (value) {
                           if (value!.isEmpty) {
                             //allow upper and lower case alphabets, space, and number
-                            return "Full Name Required";
+                            return "Paswoord Required";
                           } else if (!RegExp(r'^[a-z A-Z 0-9]+$')
                               .hasMatch(value)) {
                             return "Enter Correct Name";
@@ -276,14 +174,14 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       );
     }
 
-    Widget phoneNumberInput() {
+    Widget confirmPasswordInput() {
       return Container(
         margin: EdgeInsets.only(top: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Phone Number',
+              'Confirmation Password',
               style: secondaryTextStyle.copyWith(
                 fontSize: 14,
                 fontWeight: medium,
@@ -316,10 +214,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                           FilteringTextInputFormatter.digitsOnly,
                         ],
                         keyboardType: TextInputType.number,
-                        controller: phoneNumberController,
+                        controller: confirmPasswordController,
                         style: secondaryTextStyle,
                         decoration: InputDecoration.collapsed(
-                          hintText: 'Your Phone Number',
+                          hintText: 'Confirmation Password',
                           hintStyle: subtitleTextStyle.copyWith(
                             fontSize: 14,
                             fontWeight: medium,
@@ -327,13 +225,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Phone Number Required";
-                          } else if (value.length <= 9) {
-                            return "Phone Number too short";
-                          } else if (value.length > 20) {
-                            return "Phone Number too long";
-                          }
-                          {
+                            return "Confirm Password Required";
+                          } else {
                             return null;
                           }
                         },
@@ -348,7 +241,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
       );
     }
 
-    Widget updateButton() {
+    Widget changePasswordButton() {
       return Container(
         height: 50,
         width: double.infinity,
@@ -356,7 +249,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         child: TextButton(
           onPressed: () {
             if (formKey.currentState!.validate()) {
-              handleUpdateProfile();
+              handleChangePassword();
             }
             FocusManager.instance.primaryFocus?.unfocus();
           },
@@ -367,7 +260,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
             ),
           ),
           child: Text(
-            'Update Profile',
+            'Change Password',
             style: primaryTextStyle.copyWith(
               fontSize: 16,
               fontWeight: bold,
@@ -410,7 +303,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       ),
                     ),
                     Text(
-                      'Edit Profile',
+                      'Change Password',
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
@@ -429,11 +322,9 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    emailInput(),
-                    roleInput(),
-                    fullNameInput(),
-                    phoneNumberInput(),
-                    isLoading ? LoadingButton() : updateButton(),
+                    newPasswordInput(),
+                    confirmPasswordInput(),
+                    isLoading ? LoadingButton() : changePasswordButton(),
                   ],
                 ),
               ),
